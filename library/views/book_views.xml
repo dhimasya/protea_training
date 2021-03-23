@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="book_view_form" model="ir.ui.view">
+        <field name="name">book.view.form</field>
+        <field name="model">book</field>
+        <field name="arch" type="xml">
+            <form string="Book">
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="isbn" />
+                        <field name="edition" />
+                        <field name="page_count" />
+                        <field name="author_id" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="book_view_tree" model="ir.ui.view">
+        <field name="name">book.view.tree</field>
+        <field name="model">book</field>
+        <field name="arch" type="xml">
+            <tree string="Books">
+                <field name="id" />
+                <field name="name" />
+                <field name="edition" />
+                <field name="page_count" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="book_view_search" model="ir.ui.view">
+        <field name="name">book.view.search</field>
+        <field name="model">book</field>
+        <field name="arch" type="xml">
+            <search string="Book">
+                <field name="name" />
+                <field name="author_id" />
+                <filter name="filter1" string="Page Count > 50" domain="[('page_count', '>', 50)]"/>
+                <group>
+                    <filter name="group1" string="Groub By Author" context="{'group_by': 'author_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="book_view_kanban" model="ir.ui.view">
+        <field name="name">book.view.kanban</field>
+        <field name="model">book</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name" />
+                <field name="page_count" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div>
+                            <h1><t t-esc="record.name.raw_value"/></h1>
+                            <p>Total Page : <t t-esc="record.page_count.raw_value"/></p>
+                            <t t-if="record.page_count.raw_value > 10">
+                                the page is more than 10
+                            </t>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="book_view_graph" model="ir.ui.view">
+        <field name="name">book.view.graph</field>
+        <field name="model">book</field>
+        <field name="arch" type="xml">
+            <graph string="Book" type="bar">
+                <field name="author_id" />
+                <!-- <field name="page_count" type="measure" /> -->
+            </graph>
+        </field>
+    </record>
+
+    <record id="book_view_pivot" model="ir.ui.view">
+        <field name="name">book.view.pivot</field>
+        <field name="model">book</field>
+        <field name="arch" type="xml">
+            <pivot string="Book" disable_linking="true">
+                <field name="author_id" type="row" />
+                <!-- <field name="name" type="row" /> -->
+                <field name="page_count" type="measure" />
+            </pivot>
+        </field>
+    </record>
+
+    <record id="book_action" model="ir.actions.act_window">
+        <field name="name">Books</field>
+        <field name="res_model">book</field>
+        <field name="view_mode">kanban,tree,form,graph,pivot</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p>Add Your Book Here</p>
+        </field>
+    </record>
+
+    <menuitem
+        id="library_menu"
+        name="Library"
+        sequence="10"/>
+
+    <menuitem
+        id="book_menu"
+        name="Book"
+        action="book_action"
+        groups="base.group_user"
+        parent="library_menu"
+        sequence="10"/>
+
+</odoo>

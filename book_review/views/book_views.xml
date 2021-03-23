@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="book_view_form_inherit_book_review" model="ir.ui.view">
+        <field name="name">book.view.form.inherit</field>
+        <field name="model">book</field>
+        <field name="inherit_id" ref="library.book_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='author_id']" position="after">
+                <field name="review_ids" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="book_search_view_inherit_book_review" model="ir.ui.view">
+        <field name="name">book.view.search.inherit</field>
+        <field name="model">book</field>
+        <field name="inherit_id" ref="library.book_view_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='filter1']" position="after">
+                <filter name="filter_review" string="Good Review" domain="[('review_ids', 'like', 'good')]"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

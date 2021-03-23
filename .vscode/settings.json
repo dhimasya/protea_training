@@ -1,0 +1,6 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/opt/odoo13/odoo",
+        // "C:/your/odoo/path",
+    ]
+}

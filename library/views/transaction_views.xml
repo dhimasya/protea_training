@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="transaction_view_form" model="ir.ui.view">
+        <field name="name">transaction.view.form</field>
+        <field name="model">transaction</field>
+        <field name="arch" type="xml">
+            <form string="Transaction">
+                <header>
+                    <button string="Validate" name="action_validate" type="object" class="oe_highlight" states="draft"/>
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                        <field name="date" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                        <field name="book_id" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                        <field name="partner_id" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record id="transaction_action" model="ir.actions.act_window">
+        <field name="name">Transaction</field>
+        <field name="res_model">transaction</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p>add transaction here</p>
+        </field>
+    </record>
+    
+    <menuitem
+        id="transaction_root_menu"
+        name="Transaction"
+        parent="library_menu"
+        sequence="5"/>
+
+    <menuitem
+        id="transaction_menu"
+        name="Transaction"
+        action="transaction_action"
+        groups="base.group_user"
+        parent="transaction_root_menu"
+        sequence="10"/>
+
+</odoo>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="transaction_validate_wizard_view_form" model="ir.ui.view">
+        <field name="name">transaction.validate.wizard.view.form</field>
+        <field name="model">transaction.validate.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Validate">
+                <sheet>
+                    <p>Are you sure to validate the transaction?</p>
+                </sheet>
+                <footer>
+                    <button string="Validate" name="action_validate" type="object" class="oe_highlight"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

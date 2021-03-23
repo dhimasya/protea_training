@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="book_review_puller" model="ir.cron">
+        <field name="name">Pull Book Review</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">minutes</field>
+        <field name="model_id" ref="book_review.model_book_review"/>
+        <field name="code">model.pull_from_website()</field>
+    </record>
+
+</odoo>

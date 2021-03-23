@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="book_graph_action" model="ir.actions.act_window">
+        <field name="name">Book Graph</field>
+        <field name="res_model">book</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="library.book_view_graph"/>
+    </record>
+
+    <record id="book_tree_action" model="ir.actions.act_window">
+        <field name="name">Book Tree</field>
+        <field name="res_model">book</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="library.book_view_tree"/>
+    </record>
+
+    <record model="ir.ui.view" id="book_view_board">
+        <field name="name">Book Board</field>
+        <field name="model">board.board</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Book Dashboard">
+                <board style="1-1">
+                    <column>
+                        <action
+                            string="Book Graph"
+                            name="%(book_graph_action)d"
+                            height="150"
+                            width="510"/>
+                    </column>
+                    <column>
+                        <action
+                            string="Book Tree"
+                            name="%(book_tree_action)d"/>
+                    </column>
+                </board>
+            </form>
+        </field>
+    </record>
+
+    <record id="book_board_action" model="ir.actions.act_window">
+        <field name="name">Dashboard</field>
+        <field name="res_model">board.board</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="library.book_view_board"/>
+    </record>
+
+    <menuitem
+        id="book_board_menu"
+        name="Dashboard"
+        action="book_board_action"
+        groups="base.group_user"
+        parent="library_menu"
+        sequence="0"/>
+
+</odoo>

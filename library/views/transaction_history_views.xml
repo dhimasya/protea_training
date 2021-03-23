@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="transaction_history_view_tree" model="ir.ui.view">
+        <field name="name">transaction.history.view.tree</field>
+        <field name="model">transaction.history</field>
+        <field name="arch" type="xml">
+            <tree string="Transaction History">
+                <field name="transaction_id" />
+                <field name="book_id" />
+                <field name="date" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="transaction_history_action" model="ir.actions.act_window">
+        <field name="name">Transaction History</field>
+        <field name="res_model">transaction.history</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p>add transaction history</p>
+        </field>
+    </record>
+
+    <menuitem
+    id="transaction_history_menu"
+    name="History"
+    action="transaction_history_action"
+    groups="base.group_user"
+    parent="transaction_root_menu"
+    sequence="20"/>
+
+</odoo>
