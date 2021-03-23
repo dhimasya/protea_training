@@ -8,6 +8,7 @@
             <form string="Transaction">
                 <header>
                     <button string="Validate" name="action_validate" type="object" class="oe_highlight" states="draft"/>
+                    <button string="PRINT" name="action_print" type="object" class="btn btn-success" states="done"/>
                     <field name="state" widget="statusbar" />
                 </header>
                 <sheet>

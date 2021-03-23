@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="transaction_report_template" name="transaction report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Transaction Report</h2>
+                        <table class="table table-strip">
+                            <tr>
+                                <td><b>Transaction Number</b></td>
+                                <td><span t-esc="o.name"/></td>
+                            </tr>
+                            <tr>
+                                <td><b>Date</b></td>
+                                <td><span t-esc="o.date"/></td>
+                            </tr>
+                            <tr>
+                                <td><b>Book</b></td>
+                                <td><span t-esc="o.book_id.name"/></td>
+                            </tr>
+                            <tr>
+                                <td><b>Book Author</b></td>
+                                <td><span t-esc="o.book_id.author_id.name"/></td>
+                            </tr>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <report id="transaction_report_action"
+    model="transaction"
+    string="Transaction"
+    report_type="qweb-pdf"
+    name="library.transaction_report_template"
+    file="library.transaction_report_template"
+    menu="False"/>
+
+</odoo>
