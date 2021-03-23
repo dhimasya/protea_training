@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="library_book_index" name="Book Index">
+        <table>
+            <thead>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Page Count</th>
+            </thead>
+            <tbody>
+                <tr t-foreach="books" t-as="book">
+                    <td><t t-esc="book.get('name')"/></td>
+                    <td><t t-esc="book.get('author')"/></td>
+                    <td><t t-esc="book.get('page_count')"/></td>
+                </tr>
+            </tbody>
+        </table>
+    </template>
+
+</odoo>

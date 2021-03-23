@@ -19,6 +19,7 @@
         'wizard/transaction_validate_wizard_views.xml',
         'views/book_board.xml',
         'report/transaction_report.xml',
+        'views/library_templates.xml',
     ],
     'auto_install': False,
     'application': True,
