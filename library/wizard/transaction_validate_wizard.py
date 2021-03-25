@@ -14,5 +14,5 @@ class TransactionValidateWizard(models.TransientModel):
         return res
     
     def action_validate(self):
-        print(self.transaction_id)
-        self.transaction_id.action_validate()
+        self.transaction_id._action_validate()
+        return True

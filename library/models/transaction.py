@@ -45,7 +45,7 @@ class Transaction(models.Model):
         if not self.partner_id:
             raise UserError('Failed to save transaction, Partner is emtpy')
 
-    def _action_validate(self):
+    def action_validate(self):
         view_id = self.env.ref('library.transaction_validate_wizard_view_form').id
         return {'type': 'ir.actions.act_window',
                 'name': 'Validate',
@@ -56,13 +56,14 @@ class Transaction(models.Model):
                 'context': self._context,
         }
 
-    def action_validate(self):
+    def _action_validate(self):
         self.env['transaction.history'].create({
             'transaction_id': self.id,
             'book_id': self.book_id.id,
             'date': self.date,
         })
         self.state = 'done'
+        return True
 
     def action_print(self):
         act = self.env.ref('library.transaction_report_action').report_action(self)
